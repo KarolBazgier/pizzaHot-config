@@ -1,48 +1,23 @@
-server:
-  port: 8761
-
-eureka:
-  instance:
-    hostname: localhost
-    secure-virtual-host-name:
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
-  server:
-    enable-self-preservation: false
----
 spring:
-  config:
-    activate:
-      on-profile: eureka-1
-  application:
-    name: eureka-1
+ application:
+   name: ingredient-service
+ datasource:
+   url: jdbc:h2:mem:testdb  # Użycie bazy danych H2 w pamięci
+   driver-class-name: org.h2.Driver
+   username: sa
+   password: password
+   h2:
+     console:
+       enabled: true  # Włącza konsolę H2 dostępna pod adresem /h2-console
+   jpa:
+     hibernate:
+       ddl-auto: update  # Automatyczne aktualizowanie schematu bazy danych
+     database-platform: org.hibernate.dialect.H2Dialect
 
 server:
-  port: 8761
+ port: 0
 
 eureka:
-  instance:
-    hostname: eureka1.pizzahot.com
-
----
-spring:
-  config:
-    activate:
-      on-profile: eureka-2
-  application:
-    name: eureka-2
-
-server:
-  port: 8762
-
-eureka:
-  instance:
-    hostname: eureka2.pizzahot.com
-
-other:
-  eureka:
-    host: localhost
-    port: 8762
+ client:
+   service-url:
+     defaultZone: http://localhost:8761/eureka/
