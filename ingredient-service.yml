@@ -5,7 +5,7 @@ spring:
    url: jdbc:h2:mem:testdb  # Użycie bazy danych H2 w pamięci
    driver-class-name: org.h2.Driver
    username: sa
-   password: password
+   password: '{cipher}472e9f034446093830d3987ab99e785d72351a52328da8c04d54c6df474006c1'
    h2:
      console:
        enabled: true  # Włącza konsolę H2 dostępna pod adresem /h2-console
